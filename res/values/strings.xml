@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Zadanie_1	Maciej Plewko</string>
+    <string name="main">Main Page from MainActivity.java</string>
+    <string name="logoDescription">Patronage Logo</string>
+
+</resources>
