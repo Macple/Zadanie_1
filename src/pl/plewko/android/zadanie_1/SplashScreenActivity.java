@@ -1,32 +1,30 @@
 package pl.plewko.android.zadanie_1;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Window;
 
 public class SplashScreenActivity extends Activity {
 
 	// Set Duration of the Splash Screen
-	long Delay = 5000;
+	private final static long DELAY = 5000;
 	private boolean isBackPressed = false;
-	private Thread splashTread;
+	private Thread splashThread;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// Remove the Title Bar
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-		// Get the view from splash_screen.xml
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
 		setContentView(R.layout.splash_screen);
 		
-		splashTread = new Thread() {
+		splashThread = new Thread() {
             public void run() {
                 try {
-                    sleep(5000);
+                    sleep(DELAY);
                     if (!isBackPressed) {
                     	
                     	Log.d("splashThread", "MainActivity is running");
@@ -49,18 +47,15 @@ public class SplashScreenActivity extends Activity {
 
         };
 
-        splashTread.start();
+        splashThread.start();
 
     }
-	
-	// Protects from running the application after the BACK key was pressed
-	@Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            isBackPressed = true;
-            Log.d("onKeyDown", "BACK key pressed: FINISHING THE APPLICATION");
-            finish();
-        }
-        return super.onKeyDown(keyCode, event);
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        isBackPressed = true;
+        Log.d("onKeyDown", "BACK key pressed: FINISHING THE APPLICATION");
+        finish();
     }
 }
