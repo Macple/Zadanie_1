@@ -30,8 +30,8 @@ public class SplashScreenActivity extends Activity {
                     sleep(DELAY);
                     if (!isBackPressed) {
 
-                        Log.d("splashThread", "MainActivity is running");
-                        Intent myIntent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                        Log.d("splashThread", "LoginActivity is running");
+                        Intent myIntent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                         startActivity(myIntent);
                     }
 

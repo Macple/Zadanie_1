@@ -14,17 +14,17 @@ import android.widget.TextView;
  * @author Maciej Plewko
  * @since December 6, 2013
  */
-public class MainActivity extends Activity {
+public class LoginActivity extends Activity {
 
     final private Context context = this;
     private Button loginButton;
-    private TextView nameTextField;
+    private EditText nameTextField;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login_activity);
 
         loginButton = (Button) findViewById(R.id.login_button);
         nameTextField = (EditText) findViewById(R.id.person_name);
@@ -35,6 +35,7 @@ public class MainActivity extends Activity {
                 final Dialog loginDialog = new Dialog(context);
                 loginDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 loginDialog.setContentView(R.layout.login_dialog);
+                loginDialog.setCanceledOnTouchOutside(false);
 
                 String name = "";
                 String message = "";
@@ -52,7 +53,8 @@ public class MainActivity extends Activity {
                 if (name.length() > 0) {
                     message = "Hello " + name + "!";
                 } else {
-                    message = "Name field is empty.\nPlease enter your name.";
+                    message = "Name field is empty." +
+                            "\nPlease enter your name.";
                 }
 
                 dialogMessage.setText(message);
@@ -68,5 +70,4 @@ public class MainActivity extends Activity {
             }
         });
     }
-
 }
